@@ -2,9 +2,9 @@
     "id" : "com.sourcepole.kadas",
     "branch" : "stable",
     "base": "io.qt.qtwebkit.BaseApp",
-    "base-version": "5.14",
+    "base-version": "5.15",
     "runtime" : "org.kde.Platform",
-    "runtime-version" : "5.14",
+    "runtime-version" : "5.15",
     "sdk" : "org.kde.Sdk",
     "command" : "kadas",
     "rename-icon": "kadas",
@@ -19,7 +19,7 @@
     "separate-locales" : false,
     "build-options" : {
         "env" : {
-            "PYTHONPATH" : "/app/lib/python3.7/site-packages:/usr/lib/python3.7/site-packages"
+            "PYTHONPATH" : "/app/lib/python3.8/site-packages:/usr/lib/python3.8/site-packages"
         }
     },
     "modules" : [
@@ -32,7 +32,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/openscenegraph/OpenSceneGraph.git",
-                    "branch" : "OpenSceneGraph-3.6.5"
+                    "tag" : "OpenSceneGraph-3.6.5",
+                    "commit": "a827840baf0786d72e11ac16d5338a4ee25779db"
                 }
             ]
         },
@@ -44,7 +45,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/openscenegraph/osgQt.git",
-                    "branch": "3.5.7"
+                    "tag": "3.5.7",
+                    "commit": "1096988b351d7a399f879c447c63e1c98c0b6df3"
                 }
             ]
         },
@@ -56,7 +58,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/gwaldron/osgearth",
-                    "branch": "osgearth-2.10.2"
+                    "tag": "osgearth-2.10.2",
+                    "commit": "f7a922ba17e9d956ddb4558a81154e2c01759aab"
                 },
                 {
                     "type": "patch",
@@ -71,7 +74,7 @@
                 {
                     "type" : "git",
                     "url" : "https://git.code.sf.net/p/geographiclib/code",
-                    "branch" : "r1.50.1"
+                    "tag" : "r1.50.1"
                 }
             ]
         },
@@ -98,7 +101,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/stachenov/quazip.git",
-                    "branch": "v0.8.1"
+                    "tag": "v0.8.1",
+                    "commit": "4df6c7412e5d123192f9cc937fb5829f8e9b1afc"
                 }
             ]
         },
@@ -110,7 +114,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/manisandro/GdbCrashHandler.git",
-                    "branch": "0.3.0"
+                    "tag": "0.3.0",
+                    "commit": "e1399f877e98382178855604c26aaf69c22fdbc9"
                 }
             ]
         },
@@ -120,7 +125,8 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://github.com/kadas-albireo/kadas-print-plugin.git"
+                    "url" : "https://github.com/kadas-albireo/kadas-print-plugin.git",
+                    "commit": "f196a0af072658661e7e1c9d1d65441333ef1b7c"
                 }
             ],
             "build-commands" : [
@@ -134,7 +140,8 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://github.com/kadas-albireo/kadas-about-plugin.git"
+                    "url" : "https://github.com/kadas-albireo/kadas-about-plugin.git",
+                    "commit": "18115f5a3946daace77da4f5337cefdd5e0274f6"
                 }
             ],
             "build-commands" : [
@@ -148,7 +155,8 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://github.com/kadas-albireo/kadas-help-plugin.git"
+                    "url" : "https://github.com/kadas-albireo/kadas-help-plugin.git",
+                    "commit": "239085cd8374dc3d733ac1b2996a2ae9e3430346"
                 }
             ],
             "build-commands" : [
@@ -162,7 +170,8 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://github.com/kadas-albireo/kadas-gpkg-plugin.git"
+                    "url" : "https://github.com/kadas-albireo/kadas-gpkg-plugin.git",
+                    "commit": "fb538a7431dcd661170d8b855e4b79a37efc87e5"
                 }
             ],
             "build-commands" : [
@@ -187,13 +196,35 @@
             ]
         },
         {
+            "name": "sv2svgt",
+            "buildsystem": "cmake-ninja",
+            "cleanup": [
+                "/include",
+                "/lib/pkgconfig"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/manisandro/svg2svgt.git",
+                    "tag": "v0.9.6",
+                    "commit": "0389e2245e3bdedd99c1bbaf282209cc9baedf0c"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/svg2svgt_includes.patch"
+                }
+            ]
+        },
+        {
             "name": "kadas-albireo",
             "buildsystem": "cmake-ninja",
             "config-opts": [ "-DCMAKE_BUILD_TYPE=Release", "-DINSTALL_DEMO_DATA=ON", "-DCMAKE_MODULE_PATH=/app/share/cmake/Modules", "-DQGIS_PREFIX_PATH=/app", "-DQGIS_SIP_DIR=/app/share/sip/qgis/" ],
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://github.com/kadas-albireo/kadas-albireo2.git"
+                    "url": "https://github.com/kadas-albireo/kadas-albireo2.git",
+                    "tag": "v2.0.5",
+                    "commit": "fdb4cf54ae8f7df2635f80780846bfc69936e3aa"
                 }
             ]
         }
