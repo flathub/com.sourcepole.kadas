@@ -5,7 +5,8 @@
         {
             "type" : "git",
             "url" : "https://github.com/kadas-albireo/QGIS.git",
-            "branch" : "kadas_modifications"
+            "//": "branch: kadas_modifications",
+            "commit": "82171aa4c4fccfc16cb0cadd128b34cb69efe357"
         }
     ],
     "config-opts" : [
@@ -13,7 +14,7 @@
         "-DBINDINGS_GLOBAL_INSTALL=TRUE",
         "-DENABLE_TESTS=FALSE",
         "-DGRASS_PREFIX7=/app/grass76",
-        "-DPYTHON_SITE_PACKAGES_DIR=/app/lib/python3.7/site-packages/",
+        "-DPYTHON_SITE_PACKAGES_DIR=/app/lib/python3.8/site-packages/",
         "-DQWT_LIBRARY=/app/lib/libqwt.so"
     ],
     "modules" : [
@@ -23,7 +24,8 @@
                 {
                     "type" : "git",
                     "url" : "https://github.com/OSGeo/PROJ.git",
-                    "branch" : "6.3.1"
+                    "tag" : "6.3.1",
+                    "commit": "0e993d9744ecaa2f146bf62c43aecc61809a43ef"
                 }
             ]
         },
@@ -32,7 +34,7 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "http://download.osgeo.org/geos/geos-3.7.3.tar.bz2",
+                    "url" : "https://download.osgeo.org/geos/geos-3.7.3.tar.bz2",
                     "sha256" : "02035ae4e0ad711fa5a5556d7712530029edacac364b5b9c3ade0ded865fca7e"
                 }
             ]
@@ -42,7 +44,7 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "http://download.osgeo.org/libspatialindex/spatialindex-src-1.8.5.tar.bz2",
+                    "url" : "https://download.osgeo.org/libspatialindex/spatialindex-src-1.8.5.tar.bz2",
                     "sha256" : "31ec0a9305c3bd6b4ad60a5261cba5402366dd7d1969a8846099717778e9a50a"
                 }
             ]
@@ -57,7 +59,7 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-4.3.0a.tar.gz",
+                    "url" : "https://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-4.3.0a.tar.gz",
                     "sha256" : "88900030a4762904a7880273f292e5e8ca6b15b7c6c3fb88ffa9e67ee8a5a499"
                 },
                 {
@@ -75,7 +77,7 @@
                     "sources" : [
                         {
                             "type" : "archive",
-                            "url" : "http://www.gaia-gis.it/gaia-sins/freexl-sources/freexl-1.0.5.tar.gz",
+                            "url" : "https://www.gaia-gis.it/gaia-sins/freexl-sources/freexl-1.0.5.tar.gz",
                             "sha256" : "3dc9b150d218b0e280a3d6a41d93c1e45f4d7155829d75f1e5bf3e0b0de6750d"
                         },
                         {
@@ -107,7 +109,7 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "http://download.osgeo.org/gdal/3.0.4/gdal-3.0.4.tar.xz",
+                    "url" : "https://download.osgeo.org/gdal/3.0.4/gdal-3.0.4.tar.xz",
                     "sha256" : "5569a4daa1abcbba47a9d535172fc335194d9214fdb96cd0f139bb57329ae277"
                 }
             ],
@@ -127,7 +129,7 @@
                     "sources" : [
                         {
                             "type" : "archive",
-                            "url" : "http://prdownloads.sourceforge.net/swig/swig-3.0.12.tar.gz",
+                            "url" : "https://prdownloads.sourceforge.net/swig/swig-3.0.12.tar.gz",
                             "sha256" : "7cf9f447ae7ed1c51722efc45e7f14418d15d7a1e143ac9f09a668999f4fc94d"
                         }
                     ]
@@ -167,7 +169,7 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "http://download.kde.org/stable/qca/2.2.1/qca-2.2.1.tar.xz",
+                    "url" : "https://download.kde.org/stable/qca/2.2.1/qca-2.2.1.tar.xz",
                     "sha256" : "d716d2d8e3ed8d95bbdb061f03081d7d032206f746a30a4d29d72196f50e7b02"
                 }
             ]
@@ -191,6 +193,10 @@
                     "type" : "archive",
                     "url" : "https://sourceforge.net/projects/qwt/files/qwt/6.1.4/qwt-6.1.4.zip",
                     "sha256" : "77a5d17972865a45ca2f77b16aecd4fc7d7f913f9c705530eb586de51079abaa"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/qwt-qt-fixes.patch"
                 },
                 {
                     "type" : "shell",
@@ -224,7 +230,7 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "http://ftp.halifax.rwth-aachen.de/gnu/gsl/gsl-2.6.tar.gz",
+                    "url" : "https://ftp.halifax.rwth-aachen.de/gnu/gsl/gsl-2.6.tar.gz",
                     "sha256" : "b782339fc7a38fe17689cb39966c4d821236c28018b6593ddb6fd59ee40786a8"
                 }
             ]
@@ -232,24 +238,41 @@
         {
             "name" : "pyqt5",
             "config-opts" : [
-                "--disable-static",
-                "--enable-x11"
+                "--assume-shared",
+                "--verbose",
+                "--confirm-license",
+                "--no-designer-plugin",
+                "--no-qml-plugin",
+                "--qsci-api",
+                "--qsci-api-destdir=/app/qsci",
+                "--sipdir=/app/share/sip",
+                "--sip-incdir=/app/include",
+                "QMAKE_CFLAGS_RELEASE='-I/usr/include/python3.8/'",
+                "QMAKE_CXXFLAGS_RELEASE='-I/usr/include/python3.8/'"
             ],
             "build-options":{
                 "env":{
                     "QMAKEPATH": "/app/lib"
+                },
+                "arch": {
+                    "aarch64": {
+                        "config-opts": [
+                            "--disable-feature=PyQt_Desktop_OpenGL"
+                        ]
+                    }
                 }
             },
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://www.riverbankcomputing.com/static/Downloads/PyQt5/5.13.2/PyQt5-5.13.2.tar.gz",
-                    "sha256" : "adc17c077bf233987b8e43ada87d1e0deca9bd71a13e5fd5fc377482ed69c827"
+                    "url": "https://files.pythonhosted.org/packages/28/6c/640e3f5c734c296a7193079a86842a789edb7988dca39eab44579088a1d1/PyQt5-5.15.2.tar.gz",
+                    "sha256" : "372b08dc9321d1201e4690182697c5e7ffb2e0770e6b4a45519025134b12e4fc"
                 },
                 {
                     "type": "script",
                     "commands": [
-                        "python3 configure.py --assume-shared --confirm-license --no-designer-plugin --no-qml-plugin --sysroot=/app --qsci-api --qsci-api-destdir=/app/qsci --sipdir=/app/share/sip --sip=/app/bin/sip --sip-incdir=/app/include QMAKE_CFLAGS_RELEASE='-I/usr/include/python3.7m/' QMAKE_CXXFLAGS_RELEASE='-I/usr/include/python3.7m/'"
+                        "processed=`sed -e 's|prefix|sysroot|' <<< $@`",
+                        "python3 configure.py $processed"
                     ],
                     "dest-filename": "configure"
                 }
@@ -260,13 +283,13 @@
                     "sources" : [
                         {
                             "type" : "archive",
-                            "url" : "https://www.riverbankcomputing.com/static/Downloads/sip/4.19.22/sip-4.19.22.tar.gz",
-                            "sha256" : "e1b768824ec1a2ee38dd536b6b6b3d06de27b00a2f5f55470d1b512306e3be45"
+                            "url": "https://distfiles.macports.org/py-sip/sip-4.19.24.tar.gz",
+                            "sha256": "edcd3790bb01938191eef0f6117de0bf56d1136626c0ddb678f3a558d62e41e5"
                         },
                         {
                             "type": "script",
                             "commands": [
-                                "python3 configure.py --sip-module PyQt5.sip -b ${FLATPAK_DEST}/bin -d ${FLATPAK_DEST}/lib/python3.7/site-packages -e ${FLATPAK_DEST}/include -v ${FLATPAK_DEST}/share/sip --stubsdir=${FLATPAK_DEST}/lib/python3.7/site-packages"
+                                "python3 configure.py --sip-module PyQt5.sip -b ${FLATPAK_DEST}/bin -d ${FLATPAK_DEST}/lib/python3.8/site-packages -e ${FLATPAK_DEST}/include -v ${FLATPAK_DEST}/share/sip --stubsdir=${FLATPAK_DEST}/lib/python3.8/site-packages"
                             ],
                             "dest-filename": "configure"
                         }
@@ -286,6 +309,10 @@
                     "type" : "archive",
                     "url" : "https://sourceforge.net/projects/pyqt/files/QScintilla2/QScintilla-2.10.8/QScintilla_gpl-2.10.8.tar.gz",
                     "sha256" : "46cd5b4e609ca5e13130ba8cc7028d44fd1dc5b037f97c492899006ed0c992eb"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/0011-Fixed-the-Python-signatures-of-the-QsciAPIs-ctors.patch"
                 }
             ],
             "build-commands" : [
@@ -296,7 +323,7 @@
                 "sed -e 's|\\(features.path\\) = .*|\\1 = /app/lib/qt5/mkspecs/features|' -i Qt4Qt5/qscintilla.pro",
                 "sed -e \"s|qmake = {'CONFIG': 'qscintilla2'}|qmake = {'CONFIG': 'qscintilla2', 'QT': 'widgets printsupport'}|\" -i Python/configure.py",
                 "cd Qt4Qt5 && qmake && make -j ${FLATPAK_BUILDER_N_JOBS:-`nproc`}",
-                "cd Python && python3 configure.py --pyqt=PyQt5 -n ../Qt4Qt5/ -o ../Qt4Qt5/ --pyqt-sipdir=/app/share/sip --destdir=/app/lib/python3.7/site-packages/PyQt5 --apidir=/app/qsci/api/python --no-stubs --no-dist-info && make -j ${FLATPAK_BUILDER_N_JOBS:-`nproc`} && make install",
+                "cd Python && python3 configure.py --pyqt=PyQt5 -n ../Qt4Qt5/ -o ../Qt4Qt5/ --pyqt-sipdir=/app/share/sip --destdir=/app/lib/python3.8/site-packages/PyQt5 --apidir=/app/qsci/api/python --no-stubs --no-dist-info && make -j ${FLATPAK_BUILDER_N_JOBS:-`nproc`} && make install",
                 "cd Qt4Qt5 && make install"
             ]
         },
@@ -392,8 +419,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "http://initd.org/psycopg/tarballs/PSYCOPG-2-7/psycopg2-2.7.5.tar.gz",
-                    "sha256" : "eccf962d41ca46e6326b97c8fe0a6687b58dfc1a5f6540ed071ff1474cea749e"
+                    "url": "https://files.pythonhosted.org/packages/fd/ae/98cb7a0cbb1d748ee547b058b14604bd0e9bf285a8e0cc5d148f8a8a952e/psycopg2-2.8.6.tar.gz",
+                    "sha256": "fb23f6c71107c37fd667cb4ea363ddeb936b348bbd6449278eb92c189699f543"
                 }
             ]
         },
@@ -441,7 +468,8 @@
                         {
                             "type": "git",
                             "url": "https://github.com/facebook/zstd.git",
-                            "branch" : "v1.4.4"
+                            "tag" : "v1.4.4",
+                            "commit": "10f0e6993f9d2f682da6d04aa2385b7d53cbb4ee"
                         }
                     ]
                 }
@@ -458,7 +486,7 @@
                 {
                     "type" : "git",
                     "url" : "git://git.code.sf.net/p/saga-gis/code",
-                    "branch" : "release-7.5.0"
+                    "tag" : "release-7.5.0"
                 },
                 {
                     "type": "patch",
@@ -539,19 +567,15 @@
         {
             "name" : "python3-markupsafe",
             "buildsystem" : "simple",
-            "ensure-writable" : [
-                "/lib/python*/site-packages/easy-install.pth"
+            "build-commands" : [
+                "pip3 install --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"MarkupSafe\" --no-build-isolation"
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://pypi.python.org/packages/4d/de/32d741db316d8fdb7680822dd37001ef7a448255de9699ab4bfcbdf4172b/MarkupSafe-1.0.tar.gz",
-                    "sha256" : "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
+                    "type" : "file",
+                    "url" : "https://files.pythonhosted.org/packages/b9/2e/64db92e53b86efccfaea71321f597fa2e1b2bd3853d8ce658568f7a13094/MarkupSafe-1.1.1.tar.gz",
+                    "sha256" : "29872e92839765e546828bb7754a68c418d927cd064fd4708fab9fe9c8bb116b"
                 }
-            ],
-            "build-commands" : [
-                "python3 setup.py build",
-                "python3 setup.py install --prefix /app"
             ]
         },
         {
@@ -572,7 +596,7 @@
             "name" : "python3-pygments",
             "buildsystem" : "simple",
             "build-commands" : [
-                "pip3.7 install --prefix=/app Pygments-2.2.0-py2.py3-none-any.whl"
+                "pip3 install --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"Pygments\" --no-build-isolation"
             ],
             "sources" : [
                 {
@@ -595,7 +619,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/Exiv2/exiv2/",
-                    "branch" : "0.27"
+                    "tag" : "v0.27.4",
+                    "commit": "15098f4ef50cc721ad0018218acab2ff06e60beb"
                 }
             ]
         }
