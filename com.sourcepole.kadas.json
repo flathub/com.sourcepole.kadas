@@ -2,9 +2,9 @@
     "id" : "com.sourcepole.kadas",
     "branch" : "stable",
     "base": "io.qt.qtwebkit.BaseApp",
-    "base-version": "5.15",
+    "base-version": "5.15-21.08",
     "runtime" : "org.kde.Platform",
-    "runtime-version" : "5.15",
+    "runtime-version" : "5.15-21.08",
     "sdk" : "org.kde.Sdk",
     "command" : "kadas",
     "rename-icon": "kadas",
@@ -19,7 +19,7 @@
     "separate-locales" : false,
     "build-options" : {
         "env" : {
-            "PYTHONPATH" : "/app/lib/python3.8/site-packages:/usr/lib/python3.8/site-packages"
+            "PYTHONPATH" : "/app/lib/python3.9/site-packages:/usr/lib/python3.9/site-packages"
         }
     },
     "modules" : [
@@ -64,6 +64,10 @@
                 {
                     "type": "patch",
                     "path": "patches/osgearth_osgearthqt.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/osgearth-cpp.patch"
                 }
             ]
         },
@@ -75,6 +79,10 @@
                     "type" : "git",
                     "url" : "https://git.code.sf.net/p/geographiclib/code",
                     "tag" : "r1.50.1"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/geographiclib-fixes.patch"
                 }
             ]
         },
@@ -188,8 +196,8 @@
                     "sources": [
                         {
                             "type": "file",
-                            "url": "https://files.pythonhosted.org/packages/7d/29/174d70f303016c58bd790c6c86e6e86a9d18239fac314d55a9b7be501943/lxml-4.3.3.tar.gz",
-                            "sha256": "4a03dd682f8e35a10234904e0b9508d705ff98cf962c5851ed052e9340df3d90"
+                            "url": "https://files.pythonhosted.org/packages/36/14/4e58e16122dd50577a2bfa883c19bd781e223714d55a0d97f56ea506763c/lxml-4.3.5.tar.gz",
+                            "sha256": "738862e9724d201f1aa8394cb666d8136d666198e97d6e1e5c9876ad884a86b3"
                         }
                     ]
                 }
