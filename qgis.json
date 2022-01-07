@@ -14,7 +14,7 @@
         "-DBINDINGS_GLOBAL_INSTALL=TRUE",
         "-DENABLE_TESTS=FALSE",
         "-DGRASS_PREFIX7=/app/grass76",
-        "-DPYTHON_SITE_PACKAGES_DIR=/app/lib/python3.8/site-packages/",
+        "-DPYTHON_SITE_PACKAGES_DIR=/app/lib/python3.9/site-packages/",
         "-DQWT_LIBRARY=/app/lib/libqwt.so"
     ],
     "modules" : [
@@ -109,8 +109,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://download.osgeo.org/gdal/3.0.4/gdal-3.0.4.tar.xz",
-                    "sha256" : "5569a4daa1abcbba47a9d535172fc335194d9214fdb96cd0f139bb57329ae277"
+                    "url" : "https://download.osgeo.org/gdal/3.4.0/gdal-3.4.0.tar.xz",
+                    "sha256" : "ac7bd2bb9436f3fc38bc7309704672980f82d64b4d57627d27849259b8f71d5c"
                 }
             ],
             "modules" : [
@@ -245,8 +245,8 @@
                 "--qsci-api-destdir=/app/qsci",
                 "--sipdir=/app/share/sip",
                 "--sip-incdir=/app/include",
-                "QMAKE_CFLAGS_RELEASE='-I/usr/include/python3.8/'",
-                "QMAKE_CXXFLAGS_RELEASE='-I/usr/include/python3.8/'"
+                "QMAKE_CFLAGS_RELEASE='-I/usr/include/python3.9/'",
+                "QMAKE_CXXFLAGS_RELEASE='-I/usr/include/python3.9/'"
             ],
             "build-options":{
                 "env":{
@@ -287,7 +287,7 @@
                         {
                             "type": "script",
                             "commands": [
-                                "python3 configure.py --sip-module PyQt5.sip -b ${FLATPAK_DEST}/bin -d ${FLATPAK_DEST}/lib/python3.8/site-packages -e ${FLATPAK_DEST}/include -v ${FLATPAK_DEST}/share/sip --stubsdir=${FLATPAK_DEST}/lib/python3.8/site-packages"
+                                "python3 configure.py --sip-module PyQt5.sip -b ${FLATPAK_DEST}/bin -d ${FLATPAK_DEST}/lib/python3.9/site-packages -e ${FLATPAK_DEST}/include -v ${FLATPAK_DEST}/share/sip --stubsdir=${FLATPAK_DEST}/lib/python3.9/site-packages"
                             ],
                             "dest-filename": "configure"
                         }
@@ -321,7 +321,7 @@
                 "sed -e 's|\\(features.path\\) = .*|\\1 = /app/lib/qt5/mkspecs/features|' -i Qt4Qt5/qscintilla.pro",
                 "sed -e \"s|qmake = {'CONFIG': 'qscintilla2'}|qmake = {'CONFIG': 'qscintilla2', 'QT': 'widgets printsupport'}|\" -i Python/configure.py",
                 "cd Qt4Qt5 && qmake && make -j ${FLATPAK_BUILDER_N_JOBS:-`nproc`}",
-                "cd Python && python3 configure.py --pyqt=PyQt5 -n ../Qt4Qt5/ -o ../Qt4Qt5/ --pyqt-sipdir=/app/share/sip --destdir=/app/lib/python3.8/site-packages/PyQt5 --apidir=/app/qsci/api/python --no-stubs --no-dist-info && make -j ${FLATPAK_BUILDER_N_JOBS:-`nproc`} && make install",
+                "cd Python && python3 configure.py --pyqt=PyQt5 -n ../Qt4Qt5/ -o ../Qt4Qt5/ --pyqt-sipdir=/app/share/sip --destdir=/app/lib/python3.9/site-packages/PyQt5 --apidir=/app/qsci/api/python --no-stubs --no-dist-info && make -j ${FLATPAK_BUILDER_N_JOBS:-`nproc`} && make install",
                 "cd Qt4Qt5 && make install"
             ]
         },
@@ -373,11 +373,7 @@
             "name" : "python-owslib",
             "buildsystem" : "simple",
             "build-commands" : [
-                "pip3 install --prefix=/app python_dateutil-2.6.1-py2.py3-none-any.whl",
-                "pip3 install --prefix=/app pytz-2018.4-py2.py3-none-any.whl",
-                "pip3 install --prefix=/app requests-2.14.2-py2.py3-none-any.whl",
-                "pip3 install --prefix=/app pyproj-1.9.6.tar.gz",
-                "pip3 install --prefix=/app OWSLib-0.16.0.tar.gz"
+                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"owslib\" --no-build-isolation"
             ],
             "sources" : [
                 {
@@ -396,9 +392,9 @@
                     "sha256" : "3b39cde35be51762885631cf586f4dc2284951b44d479a4454020758d767cc2f"
                 },
                 {
-                    "type" : "file",
-                    "url" : "https://files.pythonhosted.org/packages/26/8c/1da0580f334718e04f8bbf74f0515a7fb8185ff96b2560ce080c11aa145b/pyproj-1.9.6.tar.gz",
-                    "sha256" : "e0c02b1554b20c710d16d673817b2a89ff94738b0b537aead8ecb2edc4c4487b"
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/a8/f9/e7876096af700e7987f5e5abffa09b783ab31157083f76cd88c83e3dbe95/pyproj-2.6.1.post1.tar.gz",
+                    "sha256": "4f5b02b4abbd41610397c635b275a8ee4a2b5bc72a75572b98ac6ae7befa471e"
                 },
                 {
                     "type" : "file",
@@ -451,8 +447,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://grass.osgeo.org/grass78/source/grass-7.8.2.tar.gz",
-                    "sha256" : "33576f7078f805b39ca20c2fa416ac79c64260c0581072a6dc7d813f53aa9abb"
+                    "url" : "https://grass.osgeo.org/grass78/source/grass-7.8.6.tar.gz",
+                    "sha256" : "d85e17b0a717e344cdda8f6c5bdeb86763e48d1ee74a62ab471dc8e1293993be"
                 }
             ],
             "modules": [
@@ -477,6 +473,8 @@
             "name" : "saga-gis",
             "subdir": "saga-gis",
             "config-opts": [
+                "--with-python-prefix=${FLATPAK_DEST}",
+                "--with-python-exec-prefix=${FLATPAK_DEST}",
                 "--enable-python",
                 "--disable-odbc"
             ],
@@ -492,7 +490,8 @@
                 },
                 {
                     "type": "script",
-                    "dest-filename": "saga-gis/autogen.sh",
+                    "dest": "saga-gis",
+                    "dest-filename": "autogen.sh",
                     "commands": [
                         "AUTOMAKE=\"automake --foreign\" autoreconf -vfi"
                     ]
@@ -553,8 +552,8 @@
             "sources": [
                     {
                         "type": "archive",
-                        "url": "https://github.com/numpy/numpy/releases/download/v1.14.3/numpy-1.14.3.tar.gz",
-                        "sha256": "cfcfc7a9a8ba4275c60a815c683d59ac5e7aa9362d76573b6cc4324ffb1235fa"
+                        "url": "https://files.pythonhosted.org/packages/01/1b/d3ddcabd5817be02df0e6ee20d64f77ff6d0d97f83b77f65e98c8a651981/numpy-1.18.5.zip",
+                        "sha256": "34e96e9dae65c4839bd80012023aadd6ee2ccb73ce7fdf3074c62f301e63120b"
                     }
             ],
             "build-commands": [
@@ -609,16 +608,15 @@
             "cleanup": [ "/bin" ],
             "buildsystem": "cmake-ninja",
             "config-opts" : [
-                "-DCMAKE_BUILD_TYPE=Release",
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DEXIV2_BUILD_EXIV2_COMMAND=OFF",
                 "-DEXIV2_BUILD_SAMPLES=OFF"
             ],
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://github.com/Exiv2/exiv2/",
-                    "tag" : "v0.27.4",
-                    "commit": "15098f4ef50cc721ad0018218acab2ff06e60beb"
+                    "type": "archive",
+                    "url": "http://www.exiv2.org/builds/exiv2-0.27.5-Source.tar.gz",
+                    "sha256": "35a58618ab236a901ca4928b0ad8b31007ebdc0386d904409d825024e45ea6e2"
                 }
             ]
         }
